@@ -1,0 +1,194 @@
+{% extends "base1.html" %}
+
+{% load static %}
+		 <!--Main content-->
+
+{% block title %} Settings {% endblock %}
+
+{% block content %}
+
+<!--profile header-->
+
+<div class="m_side">
+<div class="mid_sec group">
+
+
+	
+	<div class="tbox1">
+		<div class="thead">
+			<ul>
+				<li class="tab active"><a href="#general">General</a></li>
+				<li class="tab"><a href="#blocking">Blocking</a></li>
+				<li class="tab"><a href="#advance">Advance</a></li>
+			</ul>
+		</div><!--thead-->
+
+
+		<!--GENERAL-->
+
+		<div id="general" class="tbdy group">
+			<h3>General Account Settings</h3>
+			<div class="col-2 min1"><!--Left side column--></div>
+			<div class="col-8">
+				<div class="col-6 mt10 firstn"><!--First Name-->
+					<label for="fname">First Name</label>
+					<input type="text" name="fname" class="sfname">
+				</div>
+				<div class="col-6 mt10 firstn"><!--Last Name-->
+					<label for="lname">Last Name</label>
+					<input type="text" name="lname" class="sfname">
+				</div>
+				<div class="col-12 mt10 plr15"><!--Note-->
+					<span><strong>Note:</strong>You won't be able to change your name within the next 60 days</span>
+				</div>
+				<div class="col-12 mt20 plr15"><!--Email-address-->
+					<label for="semail">Email address</label>
+					<input type="text" name="semail" class="sfname">
+				</div>
+				<div class="col-12 mt20 plr15"><!--Phone number-->
+					<label for="phone">Phone number</label>
+					<div></div>
+					<input type="tel" name="phone" class="sfname" id="phone">
+					<span id="valid-msg" class="hide">✓ Valid</span>
+					<span id="error-msg" class="hide">Invalid number</span>
+				</div>
+				<div class="col-6 npass plr15">
+					<label for="npass">New Password</label>
+					<div></div>
+					<input type="password" name="npass" class="sfname">
+				</div>
+				<div class="col-6 pnote plr15"><!--Note-->
+					<span>Leave this field blank if you don't want to change your password.</span>
+				</div>
+				<div class="col-6 npass plr15">
+					<label for="rpass">Repeat Password</label>
+					<div></div>
+					<input type="password" name="rpass" class="sfname">
+				</div>
+				<div class="schange npass plr15">
+					<button class="btn blue_button pull_right">Save changes</button>
+				</div>
+				<div class="col-12 mt20 plr15 stgborder">
+				</div>
+				<div class="schange amarg plr15">
+					<a href="#">Deactivate my account</a>
+				</div>
+			</div>
+			<div class="col-2 min1">
+				<!--Right side column-->
+			</div>
+		</div><!--general-->
+
+
+
+		<!--BLOCKING-->
+
+		<div id="blocking" class="tbdy">
+			<h3>Manage Blocking</h3>
+		</div><!--blocking-->
+
+
+
+		<!--ADVANCE-->
+
+		<div id="advance" class="tbdy">
+			<h3>Advance Settings</h3>
+		</div><!--advance-->
+
+
+
+
+	</div><!--tbox1-->
+
+
+	
+	
+</div> <!--mid_sec-->
+</div> <!--m_side-->
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+<script type="text/javascript" src="{% static "scripts/main.js" %}"></script>
+<script type="text/javascript" src="{% static "build/js/intlTelInput.js" %}"></script>
+<script type="text/javascript" src="{% static "build/js/utils.js" %}"></script>
+
+<!--Toggle settings tabs-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("li.tab").click(function(){
+			$("li.active").removeClass('active');
+			$(this).addClass('active');
+			var tab = $(this).children('a').attr('href');
+			$(".tbdy").hide();
+			$(tab).show();
+		});
+	});
+
+
+
+
+
+	// Lookup country name from ip address
+	$("#phone").intlTelInput({
+		initialCountry: "auto",
+		geoIpLookup: function(callback) {
+			$.get('https://ipinfo.io?token=b91335e50eb002', function() {}, "jsonp").always(function(resp) {
+				var countryCode = (resp && resp.country) ? resp.country : "";
+				callback(countryCode);
+			});
+		},
+		utilsScript: "../../static/build/js/utils.js" // just for formatting/placeholders etc
+	});
+
+
+
+
+
+	// Phone no. validation
+	var telInput = $("#phone"),
+		errorMsg = $("#error-msg"),
+		validMsg = $("#valid-msg");
+
+	// initialise plugin
+	telInput.intlTelInput({
+		utilsScript: "../../static/build/js/utils.js"
+	});
+
+	var reset = function() {
+		telInput.removeClass("error");
+		errorMsg.addClass("hide");
+		validMsg.addClass("hide");
+	};
+
+	// on blur: validate
+	telInput.blur(function() {
+		reset();
+		if ($.trim(telInput.val())) {
+			if (telInput.intlTelInput("isValidNumber")) {
+				validMsg.removeClass("hide");
+			} else {
+				telInput.addClass("error");
+				errorMsg.removeClass("hide");
+			}
+		}
+	});
+
+	// on keyup / change flag: reset
+	telInput.on("keyup change", reset); 
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}

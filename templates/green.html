@@ -1,0 +1,108 @@
+{% extends "base1.html" %}
+
+{% load static %}
+		 <!--Main content-->
+
+{% block title %} Green {% endblock %}
+
+{% block content %}
+
+<!--profile header-->
+
+<div class="m_side">
+<div class="mid_sec group">
+	
+	<div class="feed_container">
+		<div class=" col-12 hoot_box">
+			<div class="feed_type">
+				<div class="vidia_label"><i class="fa fa-camera"></i> Vidia</div>
+				<div class="hoot_label"><i class="fa fa-pencil"></i> Hoot</div>
+			</div>
+
+			<div class="upload_area">
+				<div class="up_box">Upload Photo/Video 
+					<input class="up_fi" type="file" name="pic" id="single_pic">
+				</div>
+
+				<div class="up_box">Create Album</div>
+				<div>
+					<textarea name="pic_caption" class="pi_caption" placeholder="Say something about this photo..."></textarea>
+					<div class="dsjlk">
+						<img id="image_upload_preview"/>
+						<div class="dsfas"><span class="fa fa-times pull_right" id="reset_hooter_photo"></span></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="feed_post_bar">
+				<button class="pull_right btn sbtn mr30 blue_button save">Post</button>
+				<div class="hoot_box_pri_btn group">
+
+
+						<div class="indicator pull_right m0">
+
+							<div class="pvt_btn">
+
+								<div class="sprite_1 fork"></div>
+
+								<span class="privacy gray " ></span>
+								<span class="privacy blue" ></span>
+								<span class="privacy red" ></span>
+								<span class="privacy yellow" ></span>
+								<span class="privacy green" ></span>
+								<span class="privacy purple" ></span>
+							</div><!--pvt-btn-->
+
+							<div class="pri_down">
+								<ul>
+									<li class="public black">
+										<div class="sprite_1 globe inl_block"></div> Public
+									</li>
+									<li class="connection black">
+										<div class="sprite_1 fork inl_block"></div> Connection
+									</li>
+									<li class="private black">
+										<div class="sprite_1 lock inl_block"></div> Only Me
+									</li>
+									<li class="gray">
+										<i class="icon unsorted"></i>Unsorted
+									</li>
+									<li class="blue">
+										<i class="icon friends"></i>Friends
+									</li>
+									<li class="red">
+										<i class="icon family"></i>Family
+									</li>
+									<li class="yellow">
+										<i class="icon acquaintances"></i>Acquaintances
+									</li>
+									<li class="green">
+										<i class="icon college"></i>College
+									</li>
+									<li class="purple">
+										<i class="icon colleague"></i>Colleague
+									</li>
+								</ul>
+							</div>
+
+						</div>
+
+				</div><!--hoot_box_pri_down-->
+			</div><!--feed_post_bar-->
+		</div><!--hoot_box-->
+	</div><!--feed_container-->
+	
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{% static "scripts/main.js" %}"></script>
+<script type="text/javascript" src="{% static "scripts/privacy.js" %}"></script>
+{% endblock %}

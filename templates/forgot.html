@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgotten Password</title>
+  <link type="text/css" rel="stylesheet" href="/static/styles/user_home.css"/>
+  <script src="/static/scripts/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="/static/images/fevicon.png">
+</head>
+
+<body class="bdy">
+	
+
+
+    <!--Login box-->
+<form action="/user/" method="post">
+<div class="login">
+  <form>
+  <input type="text" class="log_input" placeholder="Email or Phone" name="email" required="required">
+  <br>
+  <input type="password" class="log_input" placeholder="Password" name="password" required="required">
+  <br>
+  {% csrf_token %}
+  <input id="log_sub_button" type="submit" name="submit" value="Log In"> 
+  </form>
+  <span><a href="{% url "forgot" %}" id="forgot_pass">Forgot Password ?</a></span>
+  <br>
+  <p id="cred_error">Wrong Email or password</p>
+</div>
+</form>
+
+
+<form action="" method="post">
+<div id="forg1">
+	<div id="forg2">
+		<div id="forg3">
+			<h2 id="m0">Enter Email or Phone no.</h2>
+		</div>
+	</div>
+	<div id="forg4">
+		<input type="text" name="re_mail" placeholder="Enter Email or Phone">
+		<p>A six digit code will be send on your Email address or phone number.</p>
+	</div>
+	{% csrf_token %}
+	<div id="forg5">
+		<a href="/user/" id="canc" class="fbtn">Cancel</a>
+		<input type="submit" id="cont" class="fbtn" name="submit" value="Continue">
+	</div>
+</div>
+</form>
+
+
+</body>
+
+</html>

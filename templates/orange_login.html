@@ -1,0 +1,86 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Channel Login</title>
+  <link type="text/css" rel="stylesheet" href="{% static "styles/user_home.css" %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static "scripts/homepage_user.js" %}"></script>
+  <link rel="icon" type="image/png" href="{% static "images/fevicon.png" %}">
+</head>
+<body class="or_bg">
+    <!--Login box-->
+<div class="login">
+  <form>
+  <input type="text" class="log_input" placeholder="Email or Phone" name="email" required="required">
+  <br>
+  <input type="password" class="log_input" placeholder="Password" name="password" required="required">
+  <br>
+  <input id="log_sub_button" type="submit" name="submit" value="Log In"> 
+  </form>
+  <span><a href="#" id="forgot_pass">Forgot Password ?</a></span>
+</div>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Channel<span class="caret"></span></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="{% url "signup" %}">User</a>
+  </div>
+</div>
+
+<div class="home_logo">
+  <img src="{% static "images/logob.png" %}" height="50px"  alt="VP">
+  <span id="aboutvp">What Is VityPro?</span>
+</div>
+
+<div class="call2act">
+  <p class="slogan">TAKE</br>BACK</br><span id="the">THE</span></br>CONTROL</p>
+  <button type="button" class="sign_up">Sign Up</button>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    $("#aboutvp").click(function(){
+    $(".vp_explained").css('display','block');
+    $(".call2act").css('display','none');
+  });
+
+
+    $(".close").click(function(){
+    $(".vp_explained").css('display','none');
+    $(".call2act").css('display','block');
+    $(".modal").css('display','none');
+    $(".home_logo").css('display','block');
+  });
+
+
+    $("button.sign_up").click(function(){
+    $(".modal").css('display','block');
+    $(".call2act").css('display','none');
+    $(".home_logo").css('display','none');
+    });
+
+    $(".btn").click(function(){
+    $(".s_form").css('display','none');
+    $(".to_hid").css('background','white');
+    $(".loading").css('display','block');
+  });
+
+
+});
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,596 @@
+{% extends "pro_header.html" %}
+
+{% load static %}
+
+
+{% block title %} Edit {% endblock %}
+
+{% block profile_content %}
+
+<div class="col-12 pro_content">
+	<div class="col-12 inner_container">
+
+
+		
+		<!--save the edit button-->
+		<div class="col-12 group edit_done">
+			<button type="button" class="btn pull_right">Save</button>
+		</div>
+
+
+		<!--Edit spacer -->
+		<div class="col-12 edit_spacer"></div>
+
+
+
+		<!--Bio-->
+		<div class="bio about_info_block group mt10">
+			<div class="col-12 plr15">
+
+
+			<div class="col-2 info_label work_at plr15">
+				<strong>Bio</strong>
+			</div> 
+			<div class="col-9 edit_bio_box">
+				<div class="edit_bio_container">
+					<textarea class="edit_bio" placeholder="Describe who you are"></textarea>
+				</div>
+				<div class=" col-12 group edit_bio_save">
+					<button class="pull_right btn sbtn mr30">Cancel</button>
+					<button class="pull_right btn sbtn mr30 blue_button save">Save</button>
+					<p class="bio_edit_char_count"><em id="count"></em></p>
+				</div>
+			</div>
+
+
+			</div>
+		</div>
+
+
+		<!--Workplaces edit-->
+		<div class="about_info_block group">
+			<div class="col-12 plr15">
+
+			<!--Worksplace-->   
+			<div class="col-6"> 
+				<div class="col-4 info_label work_at plr15">
+					<strong>Workplace</strong>
+				</div>
+				<div class="col-6 edit_bio_box">
+					<div class="edit_container">
+						<input type="text" name="org_name" class="edit_input wdth" placeholder="Organisation's Name">
+						<input type="text" name="job_position" class="edit_input pos_wdth" placeholder="Position">
+						<div class="group">
+							<input type="checkbox" name="working" class="pull_left work_check" id="w_i_8">
+							<label for="w_i_8" class="pull_left pt2">I currently work here</label>
+						</div>
+						<div class="group p6_0">
+							<select class="edit_work_year mr3 from_2">
+								<option value="0">Year</option>
+								<option value="1">2018</option>
+								<option value="2">2017</option>
+								<option value="3">2016</option>
+								<option value="4">2015</option>
+								<option value="5">2014</option>
+							</select>
+							To
+							<div class="d_inline d_none" id="present_work">
+								<label>Present</label>
+							</div>
+							<select class="edit_work_year ml3 to_2">
+								<option value="0">Year</option>
+								<option value="1">2017</option>
+								<option value="2">2016</option>
+								<option value="3">2015</option>
+								<option value="4">2014</option>
+							</select>
+						</div>
+					</div>
+					<div class=" col-12 group edit_bio_save">
+						<button class="pull_right btn sbtn mr30">Cancel</button>
+						<button class="pull_right btn sbtn mr30 blue_button">Add</button>
+					</div>
+				</div>
+			</div>
+
+
+				<div class="col-6"><!--***START 1***-->
+
+							<!--Have Worked at-->
+					<div class="col-4 info_label right_label">
+						<strong>Workplaces</strong>
+					</div>
+					<div class="col-6"><!--***START 2***-->
+						
+						<div class="col-12 wrk">
+							<div class="inline">
+								<div class="pro_info">
+									<strong>Wipro</strong>
+								</div>
+								<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+							</div>   
+							<div class="designation">
+								Assistance Manager<br>
+								2005 to 2015
+							</div>
+						</div>
+
+						<div class="col-12 wrk border_t_work">
+							<div class="inline">
+								<div class="pro_info">
+									<strong>Microsoft</strong>
+								</div>
+								<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+							</div>   
+							<div class="designation">
+								Manager<br>
+								1873 to 1890
+							</div>
+						</div>  
+
+						<div class="col-12 wrk border_t_work">
+							<div class="inline">
+								<div class="pro_info">
+									<strong>Apple inc.</strong>
+								</div>
+								<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+							</div>   
+							<div class="designation">
+								Product Designer<br>
+								1933 to 1945
+							</div>
+						</div>
+
+					</div><!--***End 2***-->
+
+				</div><!--***END 1***-->
+
+
+			</div>
+		</div>
+
+
+
+		<!--city edit-->
+		<div class="about_info_block group">
+			<div class="col-12 plr15">
+
+
+			<!--Cuurent city , Hometown-->   
+			<div class="col-6"> 
+
+				<div class="col-4">
+					<div class="col-12 info_label work_at plr15 mt6">
+						<strong>Current City</strong>
+					</div>
+					<div class="col-12 info_label work_at plr15 mt46">
+						<strong>HomeTown</strong>
+					</div>
+				</div>
+
+				<div class="col-6 edit_bio_box">
+					<div class="edit_container">
+						<input type="text" name="current_city" class="edit_input mb40 wdth" placeholder="City's Name">
+						<input type="text" name="Hometown" class="edit_input wdth" placeholder="City's Name">
+					</div>
+					<div class=" col-12 group edit_bio_save">
+						<button class="pull_right btn sbtn mr30">Cancel</button>
+						<button class="pull_right btn sbtn mr30 blue_button">Save</button>
+					</div>
+				</div>
+			</div>
+
+
+			<!--Places You Have lived-->
+			<div class="col-6"><!--***START 1***-->
+
+				<div class="col-4 info_label right_label">
+					<strong>Places You've<br>Lived</strong>
+				</div>
+				
+				<div class="col-6 edit_bio_box"><!--***START 2***-->
+					<div class="edit_container">
+						<input type="text" name="current_city" class="edit_input wdth" placeholder="City's Name">
+					</div>
+					<div class=" col-12 group edit_bio_save">
+						<button class="pull_right btn sbtn mr30">Cancel</button>
+						<button class="pull_right btn sbtn mr30 blue_button">Add</button>
+					</div>
+				</div><!--***END 2***-->
+
+			</div><!--***END 1***-->
+
+			<!--***SPACER***--><div class="col-6 lived_spacer"></div>
+
+			<!--Places list-->
+			<div class="col-6"><!--***START 1***-->
+
+				<div class="col-4 info_label right_label">
+					<strong>Places You've<br>Lived</strong>
+				</div>
+				
+				<div class="col-6 pro_info"><!--***START 2***-->
+				   <div class="col-12 wrk"> 
+						<strong class="mw170">Jhumri Talayya</strong>
+						<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+					</div>
+					<div class="col-12 border_t_work wrk"> 
+						<strong class="mw170">Lower Manhatten</strong>
+						<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+					</div>
+					<div class="col-12 border_t_work wrk"> 
+						<strong class="mw170">Mohni ka purwa</strong>
+						<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span>
+					</div>
+				</div><!--***END 2***-->
+
+			</div><!--***END 1***-->
+
+
+			</div>
+		</div>
+
+
+
+
+
+		  <!--Education edit-->
+		<div class="about_info_block group">
+			<div class="col-12 plr15">
+
+			<!--Education-->   
+			<div class="col-12"> <!--***START 1***-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Education</strong>
+				</div>
+				<div class="col-9"><!--**START 2***-->
+					<div class="col-12 edit_bio_box"><!--***START 3***-->
+						<div class="col-4 edit_container">
+							<input type="text" name="inst_name" class="edit_input wdth" placeholder="Institution's Name">
+							<input type="text" name="inst_location" class="edit_input pos_wdth" placeholder="Location">
+						</div>
+						<div class="col-4 edit_container">
+							<h3 class="vp_edu_dots">.................</h3>
+						</div>
+						<div class="col-4 edit_container">
+							<select class="edit_edu_year to_1">
+								<option value="0">Year</option>
+								<option value="1">2018</option>
+								<option value="2">2017</option>
+								<option value="3">2016</option>
+								<option value="4">2015</option>
+								<option value="5">2014</option>
+							</select>
+							<p class="pull_right to_txt">To</p>
+							<select class="edit_edu_year from_1">
+								<option value="0">Year</option>
+								<option value="1">2017</option>
+								<option value="2">2016</option>
+								<option value="3">2015</option>
+								<option value="4">2014</option>
+							</select>
+							<select class="edit_edu_type">
+								<option value="1">Elementry</option>
+								<option value="2">High School</option>
+								<option value="3">College</option>
+							</select>
+						</div>
+						<div class=" col-12 group edit_bio_save">
+							<button class="pull_right btn sbtn mr30">Cancel</button>
+							<button class="pull_right btn sbtn mr30 blue_button">Add</button>
+						</div>
+					</div><!--***END 3***-->
+
+
+					<!--***SPACER***--><div class="col-6 lived_spacer"></div>
+
+
+					<!--Education list-->
+					<div class="col-12"><!--***LIST START***-->
+
+						<div class="col-12 connector edu_unit">
+							<div class="instiitution  pro_info"><strong class="back_white">India Institiute of Technology</strong></div>
+							<div class="edu_year pro_info pull_right"><strong>2007-2016</strong></div>
+							<div class="edu_type pull_right">College</div>
+							<div class="edu_locate">New Delhi</div>
+							<div class="col-12 ed_del"><!--EDIT DELETE icon-->
+								<span class="fa fa-pencil pull_right ed_icon" title="Edit"></span>
+								<span class="fa fa-trash pull_right del_icon" title="Delete"></span>
+							</div>
+						</div>   
+
+						<div class="col-12 connector edu_unit">
+							<div class="instiitution  pro_info"><strong class="back_white">Massacheusette Institute of Technology(MIT)</strong></div>
+							<div class="edu_year pro_info pull_right"><strong>2010-2015</strong></div>
+							<div class="edu_type pull_right">University</div>
+							<div class="edu_locate">Massacheusette</div>
+							<div class="col-12 ed_del"><!--EDIT DELETE icon-->
+								<span class="fa fa-pencil pull_right ed_icon" title="Edit"></span>
+								<span class="fa fa-trash pull_right del_icon" title="Delete"></span>
+							</div>
+						</div>   
+
+						<div class="col-12 connector .edu_unit last">
+							<div class="instiitution  pro_info"><strong class="back_white">Microsoft Academy of Research 
+							in Natural History of Space and Time (MARNHST)</strong></div>
+							<div class="edu_year pro_info pull_right"><strong>2016-3015</strong></div>
+							<div class="edu_type pull_right">College</div>
+							<div class="edu_locate">Asgard</div>
+							<div class="col-12 ed_del"><!--EDIT DELETE icon-->
+								<span class="fa fa-pencil pull_right ed_icon" title="Edit"></span>
+								<span class="fa fa-trash pull_right del_icon" title="Delete"></span>
+							</div>
+						</div>   
+
+					</div>   <!--***LIST END***-->
+
+				</div><!--***END 2***-->
+
+			</div><!--***END 1***-->
+
+			</div>
+		</div><!--Education tag END-->
+
+
+
+
+	  <!--Relation edit-->
+		<div class="about_info_block group no_border">
+			<div class="col-12 plr15">
+
+			  <!--relationship-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Relationship</strong>
+				</div> 
+				<div class="col-4 edit_bio_box">
+					<div class="col-12 edit_container">
+						<select class="rel_status">
+							<option value="0">---</option>
+							<option value="11">Single</option>
+							<option value="2">In a relationship</option>
+							<option value="3">Engaged</option>
+							<option value="4">Married</option>
+							<option value="5">In an open relationship</option>
+							<option value="6">In a civil union</option>
+							<option value="7">In a demestic partnership</option>
+							<option value="8">It's complicated</option>
+							<option value="10">Separated</option>
+							<option value="9">Divorced</option>
+							<option value="1">Widowed</option>
+						</select>
+						<span class="how_rel" id="with">with</span>
+						<span class="how_rel" id="to">to</span>
+						<span class="how_rel" id="from">from</span>
+						<!--Partner optional-->
+						<div class="rel_part">
+							<div class="part_img">
+								<img src="{% static "images/blank.png" %}">
+							</div>
+							<div>
+								<input type="text" name="part_name" class="part_nm" placeholder="Search">
+							</div>
+						</div>
+					</div>
+
+					<div class=" col-12 group edit_bio_save">
+						<button class="pull_right btn sbtn mr30">Cancel</button>
+						<button class="pull_right btn sbtn mr30 blue_button">Save</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+
+	  <!--birthdate edit-->
+		<div class="about_info_block group no_border">
+			<div class="col-12 plr15">
+
+			  <!--birthdate-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Birthdate</strong>
+				</div> 
+				<div class="col-6">
+					<div class="col-12 connector pro_info no_padding">  
+						<div class="birth_date"><strong>18 May,</strong></div>
+						<div class="birth_year"><strong>1980</strong></div>
+						<div class="calculated_age pull_right"><strong>37 years old</strong></div>
+					</div>
+				</div> 
+				<div class="col-2 tooltipr">
+					<span class="fa fa-question-circle bday_disc"></span>
+					<span class="tooltiptextr">Birthdate can not be changed for security reasons</span>
+				</div> 
+				 
+			</div>
+		</div>
+
+
+
+		  <!--Family Members edit-->
+		<div class="about_info_block group no_border"><!--***START 1***-->
+			<div class="col-12 plr15"><!--***START 2***-->
+
+			  <!--Family Member-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Family<br>Members</strong>
+				</div> 
+				<div class="col-10"><!--***START 3***-->
+					<div class="col-4 edit_bio_box">
+						<div class="col-12 edit_container">
+							<input type="text" name="org_name" class="edit_input wdth" placeholder="Name">
+							<select class="edit_relation">
+								<option value="0">---</option>
+								<option value="1">Single</option>
+								<option value="2">In a relationship</option>
+								<option value="3">Engaged</option>
+								<option value="4">Married</option>
+								<option value="5">Separated</option>
+								<option value="6">Divorced</option>
+								<option value="7">Widowed</option>
+							</select>
+						</div>
+
+						<div class=" col-12 group edit_bio_save">
+							<button class="pull_right btn sbtn mr30">Cancel</button>
+							<button class="pull_right btn sbtn mr30 blue_button">Add</button>
+						</div>
+					</div>
+					<div class="col-6 h87">
+					<!--Dummy div-->
+					</div>
+
+
+					<!--Edit spacer -->
+					<div class="col-12 edit_spacer2"></div>
+
+
+				<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/damian.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Damian Wayne
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/selina.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Selina Kyle
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								Partner
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/dick.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Dick Grayson
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/jason.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Jason Todd
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					 <!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/tim.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Tim Drake
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					 <!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/talia.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Talia al gul
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								Wife
+							</div>
+						</div>
+					</div><!--end-->
+
+
+						<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-10 profile_card wrk">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/alfred.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Alfred Pennyworth
+							</div>
+							<span class="pull_right fa fa-trash trash tooltip" title="Delete"></span><!--**DELETE**-->
+							<div class="col-4 relation">
+								Gaurdian
+							</div>
+						</div>
+					</div><!--end-->
+
+
+
+				</div><!--***END 3***-->
+
+				
+			</div><!--***END 2***-->
+		</div><!--***END 1***-->
+
+
+<!--save the edit button-->
+		<div class="col-12 group edit_done">
+			<button type="button" class="btn pull_right">Save</button>
+		</div>
+
+
+
+
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript" src="{% static "scripts/main.js" %}"></script>
+{% endblock %}

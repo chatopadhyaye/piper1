@@ -1,0 +1,376 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	
+	<title>{% block title %}VityPro{% endblock %}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static "styles/main.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "styles/font-awesome.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "build/css/intlTelInput.css" %}">
+	<script src="{% static "scripts/jquery.min.js" %}"></script>
+	<link rel="icon" type="image/png" href="{% static "images/fevicon.png" %}">
+	<!--<script src="{% static "scripts/scroll.js" %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "styles/scroll.css" %}">   -->
+
+	
+</head>
+<body>
+
+
+
+									<!--Navigation bar-->
+
+
+
+
+<!--Home Button-->
+<div class="vp-nav">
+	 <div class="col-1 home_icon">
+			<img src="{% static "images/homeicon.png" %}">
+	 </div>
+
+<!--Search bar-->
+
+	 <div class="col-4 search-container" >
+				 <form class="vp-search"  role="search">
+					<input type="text" class="vp-input-search" placeholder="search" >
+				 <span class="fa fa-search vp-search-icon pull-right" ></span>
+			</form>  
+			</div>
+
+<!--VityPro Logo-->
+
+			<div class="col-2 branding logo" >          
+					 <h1><img src="{% static "images/logoa.png" %}" style="height:30px" /></h1>
+			</div>
+		 
+<!--Blue/green page toggle-->     
+
+			<div class="col-2 spacer vp_margin_top ">       
+				<label class="switch">
+					<input type="checkbox">
+					<span class="slider round"></span>
+				 </label>
+			</div>
+
+<!--Settings and logout button-->
+
+		 <div class="col-3 navdrop">
+		 <button type="button" class="vp-cog " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													 <span class="fa fa-cog vp-cog"></span>
+													</button>            
+						<a href="{% url "logout" %}" class="vp-logout pull-right">Logout</a>
+		 </div>
+
+</div>
+
+
+
+
+
+								<!--Sidebar-->
+
+
+
+
+
+<div class="sidebar_container">
+
+				<!--Sidebar rotator-->
+	<div id="rotator">
+		<img src="{% static "images/rotate.png" %}">
+	</div>
+	 
+<div class="vp_sidebar front">
+
+<div class="notice_panel">
+
+			 <!--User pic and name-->
+
+		<div class="mtop">
+
+			<div class="col-12 own_profile">
+				<div class="col-3 user_pic">
+					<img src="{% static "images/ck.jpg" %}" class="vp-user-dp">
+				</div>
+				<div class="col-7 user_name">
+					{{ user.first_name|default:"Clark" }} {{ user.last_name|default:"Kent" }}
+				</div>
+			</div>
+			
+		</div>    
+	 
+			 <!--Notification panel-->
+
+
+						 <!--Message-->
+		<div class="col-12 padding_side">
+			<button type="button" class="rgb_btn pull_right notif_r"><span></span></button>
+		</div>   
+				<!--Connection-->  
+		<div class="col-12 padding_side">
+			<button type="button" class="rgb_btn pull_right notif_g"><span></span></button>
+		</div>
+				<!--Notification-->
+		<div class="col-12 padding_side">
+			<button type="button" class="rgb_btn pull_right notif_b"><span></span></button>
+		</div>
+
+
+<!--Chat bar-->  
+
+
+<!--Chathead-->
+		<div class="col-12 chat_head_cont">
+				<div class="col-12 chat_head">
+				 <h5 id="line_onf">ONLINE</h5>
+				 <span class="fa fa-toggle-on chat_on"></span>
+			</div>
+		 </div>    
+
+	<div class="cont_search">
+	 <span class="fa fa-search"></span>
+	 <input type="text" name="cont_search" placeholder="search contacts">
+	</div>
+
+
+</div>       
+
+<div class="chat_bar">
+
+<ul id="no_m">
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/pratik.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Pratik Sharma</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/chandan.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Chandan Jain</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/nawed.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Nawed Nayaz</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/idrisi.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Shadab Idrisi</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/nitesh.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Nitesh kumar</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/mirza.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Mirza Haris Beg</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/rohit.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Rohit Yadav</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+				 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/ronald.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Ronald Lal</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/shadab.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Shadab Ahmad</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/shaheer.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Shaheer Ahmad</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/surya.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Surya Mahapatro</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/sugandha.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Sugandha Pathaniya</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+
+			 <!--chat list person 1-->
+			 <li class=" col-12 vp_chat_row">
+				 <a href="{% url "edit" %}" class="black_font">
+				 <div class="row_container">
+						<div class="chat_dp_cont">
+							 <img src="{% static "images/ashraf.jpg" %}" class="chat_dp">
+							 <div class="chat_name">Ashraf Warsi</div>
+							 <div class="on_indic_class">
+							 <span class="fa fa-circle online_indic"></span>
+							 </div>
+						</div>
+				 </div>
+				 </a>
+			 </li>
+
+</ul>
+
+
+
+
+
+</div>
+</div>  <!--front-->
+
+<div class="back">
+	
+</div>  <!--back-->
+
+</div> <!--sidebar_container-->
+
+
+{% block content %}{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+</body>
+</html>

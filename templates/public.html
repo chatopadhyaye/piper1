@@ -1,0 +1,495 @@
+{% extends "pro_header.html" %}
+
+{% load static %}
+
+
+{% block title %} Public {% endblock %}
+
+{% block profile_content %}
+
+<div class="col-12 pro_content">
+	<div class="col-12 inner_container">
+
+  <!--Bio-->
+		<div class="bio about_info_block group mt10">
+			<div class="col-11">
+				<div class="col-11 about_text pull_right">
+					<strong>Have you ever wondered why a text message is limited to 
+					160 characters? This guy had the task of setting the 
+					limit on the amount of characters of text messages.
+					</strong>
+				</div>
+			</div>
+			<div class="col-1"></div>
+		</div>
+
+
+
+		<!--Info-->
+		<div class="bio about_info_block group mt10" id="row1">
+			
+
+
+
+				<a href="{% url "privacy" %}" class="black_font"><span class="fa fa-pencil btn_redirect"></span></a>
+
+
+
+
+		<!--Work info-->
+		<div class="about_info_block group no_border pb0">
+			<div class="col-12 plr15">
+
+			<!--Works at-->   
+			<div class="col-6"> 
+				<div class="col-4 info_label work_at plr15">
+					<strong>Works at</strong>
+				</div>
+				<div class="col-8 connector">
+					<div class="inline">
+						<div class="pro_info">
+							<strong>Idea Quotient Labs</strong> 
+						</div>
+					</div>   
+					<div class="designation">
+						CEO<br>
+						2016 to Present
+					</div> 
+				</div> 
+			</div>
+
+			<!--Have Worked at-->
+			<div class="col-6">
+				<div class="col-4 info_label right_label">
+					<strong>Have Worked<br>at</strong>
+				</div>
+				<div class="col-8"><!--***START 1***-->
+					<div class="inline">
+						<div class="pro_info">
+							<strong>Wipro</strong>
+						</div>
+					</div>   
+					<div class="designation">
+					  Assistance Manager<br>
+					  2005 to 2010
+					</div>  
+					<!--slide down-->   
+					<div class="col-10 about_work_sdown">
+						<div class="col-12 s_down border_t" id="s_down1">
+							<div class="inline">
+								<div class="pro_info">
+									<strong>Microsoft</strong>
+								</div>
+							</div>   
+							<div class="designation">
+								VP sales<br>
+								2010 to 2015
+							</div>
+						</div>
+						<div class="col-12 chev_button" id="chev_b_1">
+							<span class="fa fa-chevron-down chev_d" id="chev1"></span>
+						</div>
+					</div> <!--slide end-->
+
+				</div><!--***END 1***-->
+			</div>
+
+			</div>
+		</div>
+
+
+
+		  <!--live info-->
+		<div class="about_info_block group no_border" id="row2">
+			<div class="col-12 plr15">
+
+			<!--Lives in-->
+			<div class="col-6">
+				<div class="col-12">
+					<div class="col-4 info_label plr15">
+						<strong>Lives in</strong>
+					</div> 
+					<div class="col-8 pro_info">
+						<strong>Delhi</strong>
+					</div>   
+				</div>
+					<div class="col-12 vconnector">
+						<!--vertical connector-->
+					</div>
+				<!--Hometown-->   
+				<div class="col-12">
+					<div class="col-4 info_label plr15">
+						<strong>HomeTown</strong>
+					</div>
+					<div class="col-8 pro_info">
+						<strong>Lucknow</strong>
+					</div>
+				</div>
+			</div>
+
+			<!--Have Lived in-->
+			<div class="col-6"><!--***START 1***-->
+				<div class="col-4 info_label plr15 right_label">
+					<strong>Have Lived in</strong>
+				</div> 
+				<div class="col-8 pro_info"> <!--***START 2***-->
+					<strong>New York</strong>
+					<div class="col-10 "><!--***START 3***-->
+						<div class="col-12 border_t" id="s_down2"> 
+							<strong>Las Vegas</strong>
+						</div>
+						<div class="col-12 chev_button" id="chev_b_2">
+							<span class="fa fa-chevron-down chev_d" id="chev2"></span>
+						</div>
+					</div><!--***END 3***-->
+				</div> <!--***END 2***-->
+			</div><!--***END 1***--> 
+
+
+			</div>
+		</div>
+
+<div class="col-12 d_none" id="s_down5"><!--The big slide-->
+
+	  <!--Education info-->
+		<div class="about_info_block group no_border pb0" id="row3">
+			<div class="col-12 plr15">
+
+				<div class="col-2 info_label work_at plr15">
+					<strong>Education</strong>
+				</div> 
+				<div class=" col-10 w81">
+
+					<div class="col-12 connector edu_unit">
+						<div class="instiitution  pro_info"><strong class="back_white">India Institiute of Technology</strong></div>
+						<div class="edu_year pro_info pull_right"><strong>2007-2016</strong></div>
+						<div class="edu_type pull_right">College</div>
+						<div class="edu_locate">New Delhi</div>
+					</div>   
+
+					<div class="col-12 connector edu_unit">
+						<div class="instiitution  pro_info"><strong class="back_white">Massacheusette Institute of Technology(MIT)</strong></div>
+						<div class="edu_year pro_info pull_right"><strong>2010-2015</strong></div>
+						<div class="edu_type pull_right">University</div>
+						<div class="edu_locate">Massacheusette</div>
+					</div>   
+
+					<div class="col-12 connector .edu_unit last">
+						<div class="instiitution  pro_info"><strong class="back_white">Microsoft Academy of Research 
+						in Natural History of Space and Time (MARNHST), New York</strong></div>
+						<div class="edu_year pro_info pull_right"><strong>2016-3015</strong></div>
+						<div class="edu_type pull_right">College</div>
+						<div class="edu_locate">Asgard</div>
+					</div>   
+
+					<div class="col-12 d_none edu_unit_down" id="s_down3"><!--***START 1***-->
+						<div class="col-12 connector edu_unit">
+							<div class="instiitution  pro_info"><strong class="back_white">Massacheusette Institute of Technology(MIT)</strong></div>
+							<div class="edu_year pro_info pull_right"><strong>2010-2015</strong></div>
+							<div class="edu_type pull_right">University</div>
+							<div class="edu_locate">Massacheusette</div>
+						</div>
+
+						<div class="col-12 connector edu_unit last">
+							<div class="instiitution  pro_info"><strong class="back_white">India Institiute of Technology</strong></div>
+							<div class="edu_year pro_info pull_right"><strong>2007-2016</strong></div>
+							<div class="edu_type pull_right">College</div>
+							<div class="edu_locate">New Delhi</div>
+						</div>
+					</div><!--***END 1***-->
+
+					<div class="col-12 chev_button" id="chev_b_3">
+						<span class="fa fa-chevron-down chev_d" id="chev3"></span>
+					</div>
+
+
+				</div>   <!--w81-->
+					
+			</div>
+		</div>
+
+		
+
+		<!--Relation info-->
+		<div class="about_info_block group no_border" id="row4">
+			<div class="col-12 plr15">
+
+				<!--relationship-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Relationship</strong>
+				</div> 
+				<div class="col-4 status">
+					Married to 
+					<div class="pro_link">
+						<a href="#">Selina Kyle</a>
+					</div>
+				</div>  
+
+			</div>
+		</div>
+
+
+	  <!--birthdate info-->
+		<div class="about_info_block group no_border" id="row5">
+			<div class="col-12 plr15">
+
+			  <!--birthdate-->
+				<div class="col-2 info_label work_at plr15">
+					<strong>Birthdate</strong>
+				</div> 
+				<div class="col-6">
+					<div class="col-12 connector pro_info no_padding">  
+						<div class="birth_date"><strong>18 May,</strong></div>
+						<div class="birth_year"><strong>1980</strong></div>
+						<div class="calculated_age pull_right"><strong>37 years old</strong></div>
+					</div>
+				</div>  
+				 
+			</div>
+		</div>
+
+	  <!--Family Member info-->
+		<div class="about_info_block group no_border" id="row6">
+			<div class="col-12 plr15">
+
+			  <!--Family Member-->
+				<div class="col-2 info_label fam_mem plr15">
+					<strong>Family Members</strong>
+				</div> 
+				<div class="col-10">
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/damian.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Damian Wayne
+							</div>
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/selina.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Selina Kyle
+							</div>
+							<div class="col-4 relation">
+								Partner
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/dick.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Dick Grayson
+							</div>
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					 <!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/jason.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Jason Todd
+							</div>
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					 <!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/tim.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Tim Drake
+							</div>
+							<div class="col-4 relation">
+								son
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					 <!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/talia.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Talia al gul
+							</div>
+							<div class="col-4 relation">
+								Wife
+							</div>
+						</div>
+					</div><!--end-->
+
+
+
+					<div class="col-12 d_none" id="s_down4">
+
+						<!--Family Profile card-->
+					<div class="col-6"> <!--start-->
+						<div class="col-12 profile_card">
+							<div class="col-2 user_tn">
+								<img src="{% static "images/alfred.jpg" %}" class="vp_user_tn">
+							</div>
+							<div class="col-7 user_name_card">
+								Alfred Pennyworth
+							</div>
+							<div class="col-4 relation">
+								Gaurdian
+							</div>
+						</div>
+					</div><!--end-->
+
+
+					</div>
+
+					<div class="col-12 chev_button" id="chev_b_4"><!--***START 2***-->
+						<span class="fa fa-chevron-down chev_d" id="chev4"></span>
+					</div><!--***END 2***-->
+
+
+
+
+				</div>  
+				 
+			</div>
+		</div>
+
+
+
+</div><!--the Big slide ends-->
+
+				<div class="col-12 chev_button" id="chev_b_5">
+					<span class="fa fa-chevron-down chev_d" id="chev5"></span>
+				</div>
+
+
+		</div>
+		<!--Info End-->
+
+
+
+
+
+		<!--Photos-->
+
+		<div>
+			<span class="fa fa-pencil btn_redirect2">
+		</div>
+
+		<div class="bio about_info_block group mt10 no_border">
+			
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/p200x200/29498125_1902549423151986_6049595254566817151_n.jpg?_nc_cat=0&oh=79f866e1732f39a0f52f88c4d25a5120&oe=5B5EE96C);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.14.200.200/p200x200/29468756_1897188447021417_518502573825589248_n.jpg?_nc_cat=0&oh=03e2166dd63555359473ed20929b18e8&oe=5B563C9B);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent.flko1-1.fna.fbcdn.net/v/t1.0-0/c0.0.200.200/p200x200/27867738_1850584241681838_7191337116012387236_n.jpg?oh=136c78bb6d92fcdfd4358656c444c209&oe=5B24F677);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/p200x200/29102050_1884203098319952_4470063058139480064_n.jpg?_nc_cat=0&oh=70eda001352d6fffd3a52748d683563e&oe=5B8E027E);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.0.200.200/p200x200/28872516_1881458691927726_2458929404718350336_n.jpg?_nc_cat=0&oh=df9b9aa237b9c63c973776d5f7855245&oe=5B98B825);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent.flko1-1.fna.fbcdn.net/v/t1.0-0/c0.2.200.200/p200x200/27332675_1824777030929226_7080990236087871545_n.jpg?oh=6289dd1210d402c36e49ffa909272bae&oe=5B1110ED);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/p200x200/28378285_1871090899631172_5828414431102736646_n.jpg?_nc_cat=0&oh=ac4cb77ba9e8ec2464f16c51aa71e0ee&oe=5B8C8FB5);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.24.200.200/p200x200/27750085_1849240258482903_5460163706255599089_n.jpg?_nc_cat=0&oh=3aac59f3572c7b744a788b943f62be66&oe=5B8C7690);">
+			</div>
+
+		<div class="col-12 d_none" id="s_down6"><!--Public Photos slide-->
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.3.200.200/p200x200/26907440_1824778260929103_7846506829781336827_n.jpg?_nc_cat=0&oh=d94bee9a7c76264863f53aa093f59a10&oe=5B94F835);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/p200x200/26908012_1824777074262555_1076529125137702434_n.jpg?_nc_cat=0&oh=3193824e8534d380fcdf978d6c084fb9&oe=5B5B2A1D);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.0.200.200/p200x200/26993530_1819738778099718_6583041592537037866_n.jpg?_nc_cat=0&oh=3db63f75ff668cab9b67f852364adcd8&oe=5B93438F);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c74.0.200.200/p200x200/26229639_1803148459758750_2486001173309584116_n.jpg?_nc_cat=0&oh=07c529888791ccf941cc36339d95a956&oe=5B50EC7B);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/p200x200/26169018_1796946437045619_494453183289149956_n.jpg?_nc_cat=0&oh=68c5c78cf3fd015f61c797bf4245fabb&oe=5B91C9F9);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c73.0.200.200/p200x200/26056116_1791459337594329_530434017374565981_n.jpg?_nc_cat=0&oh=18cc87f7893814bc88f05997c0b5ab15&oe=5B556CD3);">
+			</div>
+
+			<div class="pub_pic" style="background-image: url(https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-0/c0.48.200.200/p200x200/26047225_1789142794492650_5186491709989537911_n.jpg?_nc_cat=0&oh=bee3a67cc57c56df232d1a28160fa356&oe=5B5A8A02);">
+			</div>
+
+
+		</div>
+
+
+
+
+				<div class="col-12 chev_button" id="chev_b_6">
+					<span class="fa fa-chevron-down chev_d" id="chev6"></span>
+				</div>
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+
+
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript" src="{% static "scripts/main.js" %}"></script>
+{% endblock %}
+
