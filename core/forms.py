@@ -2,19 +2,36 @@ from django import forms
 from .models import MyUser
 
 
+
 class MyUserForm(forms.ModelForm):
 	
 	class Meta:
 		model = MyUser
-		fields = ['email', 'password', 'first_name', 'last_name', 'sex', 'day', 'month', 'year']
+		fields = ['email', 'password', 'first_name', 'last_name', 'sex', 'day', 'month', 'year', 'phone']
+
 
 
 	def clean_email(self):
-		email = self.cleaned_data['email'].lower()
-		r = MyUser.objects.filter(email=email)
-		if r.exists():
-			raise  ValidationError("Email already exists")
-		return email
+		if self.cleaned_data['email'] is not None:
+			email = self.cleaned_data['email'].lower()
+			e = MyUser.objects.filter(email=email)
+			if e != "":
+				if e.exists():
+					raise  ValidationError("Email already exists")
+				return email
+
+
+	def clean_phone(self):
+		phone = self.cleaned_data['phone']
+		if phone is not None:
+			p = MyUser.objects.filter(phone=phone)
+			if p != "":
+				if p.exists():
+					raise ValidationError("Phone no. already exists")
+				return phone
+
+
+
 
 	def save(self, commit=True):
 		user = MyUser.objects.create_user(
@@ -25,19 +42,27 @@ class MyUserForm(forms.ModelForm):
 			self.cleaned_data['day'],
 			self.cleaned_data['month'],
 			self.cleaned_data['year'],
+			self.cleaned_data['phone'],
 			self.cleaned_data['password'],
-
 		)
 		return user
 
 
-"""
-	def clean_email2(self):
-		# Check that the two password entries match
-		email = self.cleaned_data.get("email")
-		email_r = self.cleaned_data.get("email_r")
-		if email and email_r and email != email_r:
-			raise forms.ValidationError("emails don't match")
-		return email
 
+
+
+
+"""
+	def clean_email_phone(self):
+		logid = self.cleaned_data['logid'].lower()
+		if '@'in logid:
+			r = MyUser.objects.filter(email=logid)
+			if r.exists():
+				raise ValidationError("Email already exists")
+			return logid
+		else:
+			p = MyUser.objects.filter(phone=logid)
+			if p.exists():
+				raise ValidationError("Phone no. already exists")
+			return logid
 """

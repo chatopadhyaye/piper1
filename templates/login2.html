@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link type="text/css" rel="stylesheet" href="/static/styles/user_home.css"/>
+  <script src="/static/scripts/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="/static/images/fevicon.png">
+</head>
+
+<body class="bdy">
+	
+<div class="upm">
+  
+</div>
+
+
+
+
+<form action="" method="post">
+<div class="conf1 w414">
+	<div id="forg2">
+		<div id="forg3">
+			<h2 id="m0">Login to VityPro</h2>
+		</div>
+	</div>
+	<div id="newl">
+		<span class="lem">Invalid credential</span>
+		<input type="text" class="log_input nl" name="email" placeholder="Email or Phone">
+		<input type="password" class="log_input nl" name="password" id="mdown" placeholder="Password">
+	</div>
+	{% csrf_token %}
+	<div id="forg5">
+		<a href="/user/" id="canc" class="fbtn">Cancel</a>
+		<input type="submit" id="cont" class="fbtn" name="submit" value="Log In">
+	</div>
+</div>
+</form>
+
+
+</body>
+
+</html>

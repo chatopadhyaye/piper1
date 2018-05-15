@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import ( BaseUserManager, AbstractBaseUser )
-#import uuid
 from django.utils import six, timezone
+
+
+
+
 
 
 # Create your models here.
@@ -10,22 +13,25 @@ from django.utils import six, timezone
 
 class MyUserManager(BaseUserManager):
 
-	def create_user(self, email, sex, first_name, last_name, day, month, year, password1=None,):
+	def create_user(self, email, sex, first_name, last_name, day, month, year, phone, password1=None,):
 		"""
 		Creates and saves a User with the given email, date of
 		birth and password.
 		"""
 		if not email:
-			raise ValueError('Users must have an email address')
+			if not phone:
+				raise ValueError('Users must have an email or phone no.')
+
 
 		user = self.model(
-			email=self.normalize_email(email),
+			email=email,
 			sex=sex,
 			first_name=first_name,
 			last_name=last_name,
 			day=day,
 			month=month,
 			year=year,
+			phone=phone
 		)
 
 		user.set_password(password1)
@@ -45,16 +51,24 @@ GENDER = (
 
 
 class MyUser(AbstractBaseUser):
-	email = models.EmailField(max_length=50, unique=True)
+	email = models.EmailField(max_length=50, unique=True, blank=True, null=True)
 	userid = models.AutoField(primary_key=True, unique=True, editable=False)
 	sex = models.CharField(choices=GENDER, max_length=10)
 	first_name = models.CharField(max_length=20)
 	last_name = models.CharField(max_length=20)
-	day = models.CharField(max_length=10, default='01')
-	month = models.CharField(max_length=10, default='january')
-	year = models.CharField(max_length=10, default='1995')
+	day = models.CharField(max_length=10)
+	month = models.CharField(max_length=10)
+	year = models.CharField(max_length=10)
+	phone = models.CharField(max_length=15, unique=True, blank=True, null=True)
 	date_joined = models.DateTimeField(default=timezone.now)
 
+
+	def clean(self):
+		"""
+		Clean up blank fields to null
+		"""
+		if self.email == "":
+			self.email = None
 
 
 	objects = MyUserManager()
@@ -68,31 +82,3 @@ class MyUser(AbstractBaseUser):
 		return self.userid
 
 
-
-
-
-
-
-
-
-
-
-"""
-class cred(models.Model):
-	email = models.EmailField(max_length=50)
-	password = models.CharField(max_length=50)
-
-
-GENDER = (
-   ('male', 'Male'),
-   ('female', 'Female')
-)
-
-
-class profile(models.Model):
-	userid = models.UUIDField(primary_key=True, editable=False)
-	fname = models.CharField(max_length=20)
-	lname = models.CharField(max_length=20)
-	bdate = models.DateField()
-	sex = models.CharField(choices=GENDER, max_length=10)
-"""

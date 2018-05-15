@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'core.MyUser'
 
+AUTHENTICATION_BACKENDS = ('core.backends.EmailOrPhoneModelBackend',)
+
 # Application definition
 
 INSTALLED_APPS = [

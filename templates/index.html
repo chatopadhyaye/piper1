@@ -278,7 +278,7 @@
     <span id="l_name" class="tooltiptext2">Required Field</span>
     </div>
     <div class="tooltip1">
-    <input type="text" class="common_input full_width" name="email" placeholder="Email or Phone no."><br>
+    <input type="text" class="common_input full_width" id="eop" name="email" placeholder="Email or Phone no."><br>
     <span id="email" class="tooltiptext1"></span>
     </div>
     <div class="tooltip1">
@@ -350,6 +350,10 @@ function validateForm() {
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
+
+
+    //set the value of hidden input field to that of 'email or phone' field
+    //$("#logid").val($("#eop").val());
 
 
     if (a != "") {
@@ -457,6 +461,7 @@ function validateForm() {
 
     if (e.match(numbers)) {
       if (e.match(phoneno)) {
+        $("#eop").attr("name","phone"); //change email field name to phone
         //pass
       }
       else {
@@ -472,7 +477,7 @@ function validateForm() {
       }
       else {
         $('#email').empty();
-        $('#email').append("Invalid Email address").css('background-color','yellow');
+        $('#email').append("Invalid Email address").css('background-color','orange');
         $('#email').addClass("disblock");
         return false;
       }
@@ -512,8 +517,6 @@ function validateForm() {
 
 
 }  // ValidateForm function
-
-
 
 
 

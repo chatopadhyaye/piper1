@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^channel/$', views.channel, name = "channel"),
     url(r'^user/$', coreviews.login_user, name = "login"),
     url(r'^signup/$', coreviews.signup_form, name = "signup"),
+    url(r'^login2/$', coreviews.login2, name = "login2"),
     url(r'^logout/$', coreviews.logout_user, name = "logout"),
     url(r'^forgot/$', coreviews.forgot, name = "forgot"),
     url(r'^confirm/$', coreviews.confirm, name = "confirm"),

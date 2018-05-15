@@ -18,8 +18,13 @@ def signup_form(request):
 		if f.is_valid():
 			f.save()
 			email = f.cleaned_data.get('email')
+			phone = f.cleaned_data.get('phone')
 			raw_password = f.cleaned_data.get('password')
-			user = authenticate(username=email, password=raw_password)
+			if email is not None:
+				email = email.lower()
+				user = authenticate(username=email, password=raw_password)
+			elif phone is not None:
+				user = authenticate(username=phone, password=raw_password)
 			login(request, user)
 			return redirect("about")
 		else:
@@ -47,13 +52,42 @@ def login_user(request):
 				return HttpResponseRedirect(next_url)
 			else:
 				return redirect("green")
+		else:
+			return redirect("login2")
 
 
 
 	else:
 		f = MyUserForm(request.POST)
 
-	return render(request, 'index.html', {'form': f})
+		return render(request, 'index.html', {'form': f})
+
+
+
+
+def login2(request):
+
+
+	if request.method == 'POST':
+		email = request.POST['email']
+		password = request.POST['password']
+		user = authenticate(username=email, password=password)
+		if user is not None:
+			login(request, user)
+			next_url = request.GET.get('next')
+			if next_url:
+				return HttpResponseRedirect(next_url)
+			else:
+				return redirect("green")
+		else:
+			return redirect("login2")
+
+
+	else:
+		f = MyUserForm(request.POST)
+
+		return render(request, 'login2.html', {'form': f})
+
 
 
 
