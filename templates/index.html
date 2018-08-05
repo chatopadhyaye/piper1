@@ -6,8 +6,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>USER login</title>
-  <link type="text/css" rel="stylesheet" href="{% static "styles/user_home.css" %}"/>
   <script src="{% static "scripts/jquery.min.js" %}"></script>
+  <script type="text/javascript">
+
+  // ajax for checking authentication
+    $.ajax({
+    url: "/check_token/",
+    type: 'get',
+    headers: {
+    Authorization: "Token " +localStorage.token,
+     },
+    statusCode: {
+      200: function() {
+      window.stop();
+      $(location).attr('href', 'http://127.0.0.1:8000/green/');
+      }
+      
+    }
+  });
+  </script>
+  <link type="text/css" rel="stylesheet" href="{% static "styles/user_home.css" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "styles/font-awesome.min.css" %}">
   <script type="text/javascript" src="{% static "scripts/homepage_user.js" %}"></script>
   <link rel="icon" type="image/png" href="{% static "images/fevicon.png" %}">
 </head>
@@ -20,14 +39,14 @@
 
 
     <!--Login box-->
-<form action="" method="post">
+<form name="login_form" action="/userlogin/" onsubmit="return login()" method="post">
 <div class="login">
   <form>
-  <input type="text" class="log_input" placeholder="Email or Phone" name="email" required="required">
+  <input type="text" class="log_input" placeholder="Email or Phone" name="username" required="required">
   <br>
   <input type="password" class="log_input" placeholder="Password" name="password" required="required">
   <br>
-  {% csrf_token %}
+
   <input id="log_sub_button" type="submit" name="submit" value="Log In"> 
   </form>
   <span><a href="{% url "forgot" %}" id="forgot_pass">Forgot Password ?</a></span>
@@ -80,8 +99,8 @@
 
 
      <!--Sign up form (MODAL)-->
-<form name="su_form" action="/signup/" onsubmit="return validateForm()" method="post" autocomplete="off">
-  {% csrf_token %}
+<form name="su_form" id="form" action="/usersignup/" onsubmit="return validateForm()" method="post" autocomplete="off">
+
 <div class="modal to_hid">
   <div class="nd_div">
       <div class="loading">
@@ -270,11 +289,11 @@
 
 
     <div class="inl_bl tooltip">
-    <input type="text" class="common_input" id="mR8" name="first_name" placeholder="First Name">
+    <input type="text" class="common_input" id="first_name" name="first_name" placeholder="First Name">
     <span id="f_name" class="tooltiptext">Required Field</span>
     </div>
     <div class="inl_bl tooltip2">
-    <input type="text" class="common_input" name="last_name" placeholder="Surname"><br>
+    <input type="text" class="common_input" id="last_name" name="last_name" placeholder="Surname"><br>
     <span id="l_name" class="tooltiptext2">Required Field</span>
     </div>
     <div class="tooltip1">
@@ -282,14 +301,19 @@
     <span id="email" class="tooltiptext1"></span>
     </div>
     <div class="tooltip1">
-    <input type="password" class="common_input full_width" name="password" placeholder="Password"><br>
-    <span id="pass1" class="tooltiptext1">Required Field</span>
+    <input type="text" class="common_input full_width" id="username_input" name="username" placeholder="Username"><br>
+        <div id="tick">
+          <span class="fa fa-undo" id="undo"></span>
+          <span class="fa fa-times-circle-o" id="times"></span>
+          <span class="fa fa-check" id="check"></span>
+        </div>
+    <span id="username" class="tooltiptext1">Required Field</span>
     </div>
     <div class="tooltip1">
-    <input type="password" class="common_input full_width" name="password2" placeholder="Re-enter Password"><br>
-    <span id="pass2" class="tooltiptext1">Required Field</span>
+    <input type="password" class="common_input full_width" name="password" placeholder="Password"><br>
+    <span id="pass" class="tooltiptext1">Required Field</span>
     </div>
-    <p>By clicking Sign Up you agree to our <a href="#">Terms</a> , <a href="#">Data policy</a> &#38 <a href="#">Cookie Use Policy</a>.</p>
+    <p>By clicking Sign Up you agree to our <a href="http://127.0.0.1:8000/green/">Terms</a> , <a href="http://127.0.0.1:8000/about/">Data policy</a> &#38 <a href="#">Cookie Use Policy</a>.</p>
     <button class="btn">Sign Up</button><br>
         <div class="channel_link">
                           <a href="#"><strong>Create a Channel</strong></a> for Celebrity, Cause, etc.
@@ -303,33 +327,123 @@
 <script>
   $(document).ready(function(){
     $("#aboutvp").click(function(){
-    $(".vp_explained").css('display','block');
-    $(".call2act").css('display','none');
+      $(".vp_explained").css('display','block');
+      $(".call2act").css('display','none');
   });
 
 
     $(".close").click(function(){
-    $(".vp_explained").css('display','none');
-    $(".call2act").css('display','block');
-    $(".modal").css('display','none');
-    $(".home_logo").css('display','block');
+      $(".vp_explained").css('display','none');
+      $(".call2act").css('display','block');
+      $(".modal").css('display','none');
+      $(".home_logo").css('display','block');
   });
 
 
     $("button.sign_up").click(function(){
-    $(".modal").css('display','block');
-    $(".call2act").css('display','none');
-    $(".home_logo").css('display','none');
+      $(".modal").css('display','block');
+      $(".call2act").css('display','none');
+      $(".home_logo").css('display','none');
     });
-/*
-    $(".btn").click(function(){
-    $(".s_form").css('display','none');
-    $(".to_hid").css('background','white');
-    $(".loading").css('display','block');
-  });  */
 
 
-});
+    $("#first_name").blur(function(){
+      generate_username();
+    });
+
+    $("#last_name").blur(function(){
+      generate_username();
+    });
+
+
+    function generate_username(){
+      var fn = document.forms["su_form"]["first_name"].value;
+      var ln = document.forms["su_form"]["last_name"].value;
+      if (fn != "" && ln != "") {
+        
+        var arr = [
+         fn, ln, fn+ln, ln+fn, fn.charAt(0)+ln, ln.charAt(0)+fn,
+         ln+fn.charAt(0), fn+ln.charAt(0), fn+"00", fn+"11", fn+"22",
+         fn+"33", fn+"44", fn+"55", fn+"66", fn+"77", fn+"88", fn+"99",
+         fn+"000", fn+"111", fn+"222", fn+"333", fn+"444", fn+"555", fn+"666", fn+"777",
+         fn+"888", fn+"999", fn+"123", fn+"007", ln+"00", ln+"11", ln+"22",
+         ln+"33", ln+"44", ln+"55", ln+"66", ln+"77", ln+"88", ln+"99",
+         ln+"000", ln+"111", ln+"222", ln+"333", ln+"444", ln+"555", ln+"666", ln+"777",
+         ln+"888", ln+"999", ln+"123", ln+"007", fn+"12", fn+"13", fn+"14", fn+"15", fn+"16",
+         fn+"17", fn+"18", fn+"19", fn+"20", fn+"21", fn+"23", fn+"24", fn+"25", fn+"26",
+         fn+"27", fn+"28", fn+"29", fn+"30", fn+"31", fn+"32", fn+"34", fn+"35", fn+"37",
+         fn+"38", fn+"39", fn+"40", fn+"41", fn+"42", fn+"43", fn+"45", fn+"46", fn+"47",
+         fn+"48", fn+"49", fn+"50", ln+"12", ln+"13", ln+"14", ln+"15", ln+"16",
+         ln+"17", ln+"18", ln+"19", ln+"20", ln+"21", ln+"23", ln+"24", ln+"25", ln+"26",
+         ln+"27", ln+"28", ln+"29", ln+"30", ln+"31", ln+"32", ln+"34", ln+"35", ln+"37",
+         ln+"38", ln+"39", ln+"40", ln+"41", ln+"42", ln+"43", ln+"45", ln+"46", ln+"47"
+         ];
+        var usernames = JSON.stringify(arr);
+        
+
+        $.ajax({
+          url: "/check_username_list/",
+          type: "post",
+          data: {
+            usernames
+          },
+          statusCode: {
+            200: function(result) {
+              console.log(result);
+              uc = 0;
+              ulist = result;
+              $("#undo").show();
+              //$("#username_input").val(result[0]);
+          } 
+          }
+        });
+      }
+
+
+    }//generate username
+
+
+    $("#username_input").blur(function(){
+      var username  = document.forms["su_form"]["username"].value;
+      if (username != "") {
+        $.ajax({
+          url: "/check_username/",
+          type: "post",
+          data: {
+            "username": username
+          },
+          statusCode: {
+            200: function() {
+              $("#times").hide();
+              $("#check").show();
+            },
+            400: function() {
+              $("#check").hide();
+              $("#times").show();
+            }
+          }
+        });
+      }
+      else{
+        $("#times").hide();
+        $("#check").hide();
+        }
+    });
+
+
+    $("#undo").click(function(){
+      $("#username_input").val(ulist[uc]);
+      uc += 1;
+      if (uc > 9) {
+        uc = 0;
+      }
+      $("#check").show();
+
+    });
+
+
+
+}); //Document.ready
 
 
 
@@ -343,8 +457,9 @@ function validateForm() {
     var c  = document.forms["su_form"]["first_name"].value;
     var d  = document.forms["su_form"]["last_name"].value;
     var e  = document.forms["su_form"]["email"].value;
-    var f  = document.forms["su_form"]["password"].value;
-    var g  = document.forms["su_form"]["password2"].value;
+    var f  = document.forms["su_form"]["username"].value;
+    var g  = document.forms["su_form"]["password"].value;
+    
 
     var today = new Date();
     var dd = today.getDate();
@@ -378,11 +493,11 @@ function validateForm() {
     }
 
     if (f != "") {
-      $("#pass1").removeClass("disblock"); 
+      $("#username").removeClass("disblock"); 
     }
 
     if (g != "") {
-      $("#pass2").removeClass("disblock"); 
+      $("#pass").removeClass("disblock"); 
     } 
 
 
@@ -447,9 +562,7 @@ function validateForm() {
       return false;
     }
     else if (e == "") {
-      $('#email').empty();
-      $('#email').append("Required Field")
-      $('#email').addClass("disblock");
+      $('#email').empty().append("Required Field").addClass("disblock");
       return false;
     }
 
@@ -462,12 +575,12 @@ function validateForm() {
     if (e.match(numbers)) {
       if (e.match(phoneno)) {
         $("#eop").attr("name","phone"); //change email field name to phone
+        var h = document.forms["su_form"]["phone"].value;
+        var e = undefined;
         //pass
       }
       else {
-        $('#email').empty();
-        $('#email').append("Invalid Phone no.");
-        $('#email').addClass("disblock");
+        $('#email').empty().append("Invalid Phone no.").addClass("disblock");
         return false;
       }
     }
@@ -476,9 +589,7 @@ function validateForm() {
         //pass
       }
       else {
-        $('#email').empty();
-        $('#email').append("Invalid Email address").css('background-color','orange');
-        $('#email').addClass("disblock");
+        $('#email').empty().append("Invalid Email address").addClass("disblock");
         return false;
       }
     }
@@ -486,37 +597,147 @@ function validateForm() {
 
 
     if (f == "") {
-      $('#pass1').empty();
-      $('#pass1').append("Required Field")
-      $('#pass1').addClass("disblock");
+      $('#username').empty().append("Required Field").addClass("disblock");
       return false;
     }
 
-    if (f.length < 6 ) {
-      $('#pass1').empty();
-      $('#pass1').append("Password must be at least 6 character")
-      $('#pass1').addClass("disblock");
-      return false;
-    }
 
     if (g == "") {
-      $('#pass2').empty();
-      $('#pass2').append("Required Field")
-      $('#pass2').addClass("disblock");
+      $('#pass').empty().append("Required Field").addClass("disblock");
       return false;
     }
 
-    if (f != g) {
-      $('#pass2').empty();
-      $('#pass2').append("Passwords do not match")
-      $('#pass2').addClass("disblock");
+
+    if (g.length < 6 ) {
+      $('#pass').empty().append("Password must be at least 6 character").addClass("disblock");
       return false;
     }
+
+
+
+
+
+
+
+
+    //validate username
+    $.ajax({
+    url: "/usersignup/",
+    type: 'post',
+    data: {
+      "sex": a,
+      "day": b1,
+      "month": b2,
+      "year": b3,
+      "first_name": c,
+      "last_name": d,
+      "email": e,
+      "username": f,
+      "password": g,
+      "phone": h
+    },
+    statusCode: {
+      400: function(result) {
+        if (result['responseJSON'].username == "my user with this username already exists.") {
+          invalidUsername();
+        }
+
+        if (result['responseJSON'].email == "my user with this email already exists.") {
+          invalidEmail();
+        }
+
+        if (result['responseJSON'].phone == "my user with this phone already exists.") {
+          invalidPhone();
+        }
+      },
+      201: function(result) {
+        var email = result.email;
+        var phone = result.phone;
+        var password = result.password;
+        if (email !== undefined) {
+          login2(email, password);
+        } else if (phone !== undefined) {
+            login2(phone, password);
+          }
+      }
+    }
+  });
+
+
+    function invalidEmail() {
+      $('#email').empty().append("Email already exist").addClass("disblock");
+    }
+
+    function invalidPhone() {
+      $('#email').empty().append("Phone already exist").addClass("disblock");
+    }
+
+    function invalidUsername() {
+      $('#username').empty().append("Username already exist").addClass("disblock");
+    }
+
+
+
+  return false;
+
+
+function login2(username, password) {
+
+
+  $.ajax({
+    url: "/userlogin/",
+    type: 'post',
+    data: {
+      "username":username,
+      "password":password
+    },
+    success: function(result){
+      localStorage.token = result.token;
+      $(location).attr('href', 'http://127.0.0.1:8000/green/');
+    }
+  });
+
+  return false;
+
+}
 
 
 
 
 }  // ValidateForm function
+
+
+
+
+
+// Log the user in 
+
+function login() {
+  var username  = document.forms["login_form"]["username"].value;
+  var password  = document.forms["login_form"]["password"].value;
+
+  $.ajax({
+    url: "/userlogin/",
+    type: 'post',
+    data: {
+      "username":username,
+      "password":password
+    },
+    success: function(result){
+      localStorage.removeItem("token");
+      localStorage.token = result.token;
+      $(location).attr('href', 'http://127.0.0.1:8000/green/');
+    },
+    error: function(){
+      $("#cred_error").show();
+    }
+  });
+
+  return false;
+
+}
+
+
 
 
 

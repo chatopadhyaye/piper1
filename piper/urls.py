@@ -13,10 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from piper import views
-from core import views as coreviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,13 +30,8 @@ urlpatterns = [
     url(r'^green/$', views.green, name = "green"),
     url(r'^settings/$', views.settings, name = "settings"),
     url(r'^channel/$', views.channel, name = "channel"),
-    url(r'^user/$', coreviews.login_user, name = "login"),
-    url(r'^signup/$', coreviews.signup_form, name = "signup"),
-    url(r'^login2/$', coreviews.login2, name = "login2"),
-    url(r'^logout/$', coreviews.logout_user, name = "logout"),
-    url(r'^forgot/$', coreviews.forgot, name = "forgot"),
-    url(r'^confirm/$', coreviews.confirm, name = "confirm"),
-    url(r'^newpass/$', coreviews.newpass, name = "newpass"),
+    url(r'^', include('core.urls')),
+    url(r'^', include('core.api.urls')),
 
 
 ]

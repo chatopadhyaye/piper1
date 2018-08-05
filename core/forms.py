@@ -1,5 +1,6 @@
 from django import forms
 from .models import MyUser
+from django.core.exceptions import ValidationError
 
 
 
@@ -7,7 +8,7 @@ class MyUserForm(forms.ModelForm):
 	
 	class Meta:
 		model = MyUser
-		fields = ['email', 'password', 'first_name', 'last_name', 'sex', 'day', 'month', 'year', 'phone']
+		fields = ['email', 'password', 'first_name', 'last_name', 'sex', 'day', 'month', 'year', 'phone', 'username']
 
 
 
@@ -43,26 +44,9 @@ class MyUserForm(forms.ModelForm):
 			self.cleaned_data['month'],
 			self.cleaned_data['year'],
 			self.cleaned_data['phone'],
+			self.cleaned_data['username'],
 			self.cleaned_data['password'],
-		)
+				)
 		return user
 
 
-
-
-
-
-"""
-	def clean_email_phone(self):
-		logid = self.cleaned_data['logid'].lower()
-		if '@'in logid:
-			r = MyUser.objects.filter(email=logid)
-			if r.exists():
-				raise ValidationError("Email already exists")
-			return logid
-		else:
-			p = MyUser.objects.filter(phone=logid)
-			if p.exists():
-				raise ValidationError("Phone no. already exists")
-			return logid
-"""

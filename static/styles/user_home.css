@@ -312,7 +312,7 @@ a:hover {
 	width: 96%;
 }
 
-#mR8 {
+#first_name {
 	margin-right: 8px;
 }
 
@@ -606,4 +606,36 @@ a:hover {
 	display: block;
 	padding: 5px 125px 0px;
 	color: red;
+}
+
+#tick {
+	height: 37px;
+	width: 100px;
+	position: absolute;
+	right: -2px;
+	top: 14px;
+	border-radius: 5px;
+	font-size: 21px;
+}
+
+#undo {
+	float: right;
+    padding: 9px 12px 0px 0px;
+    color: #4685f7;
+    cursor: pointer;
+    display: none;
+}
+
+#times {
+	float: right;
+    padding: 9px 12px 0px 0px;
+    color: #f15b5bb5;
+    display: none;
+}
+
+#check {
+	float: right;
+    padding: 9px 12px 0px 0px;
+    color: #78fda1;
+    display: none;
 }

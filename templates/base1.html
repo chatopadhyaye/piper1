@@ -7,13 +7,34 @@
 	
 	<title>{% block title %}VityPro{% endblock %}</title>
 	<meta charset="utf-8">
+	<script src="{% static "scripts/jquery.min.js" %}"></script>
+	<script type="text/javascript">
+
+	// setting header for every future ajax request
+	$.ajaxSetup({
+		headers: {
+			Authorization: "Token " +localStorage.token,
+		},
+	});
+
+	// ajax for checking authentication
+	$.ajax({
+	url: "/check_token/",
+	type: 'get',
+	statusCode: {
+	  401: function() {
+	  window.stop();
+	  $(location).attr('href', 'http://127.0.0.1:8000/user/');
+	  }
+	  
+	 }
+	});
+	</script>
 	<link rel="stylesheet" type="text/css" href="{% static "styles/main.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "styles/font-awesome.min.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "build/css/intlTelInput.css" %}">
-	<script src="{% static "scripts/jquery.min.js" %}"></script>
 	<link rel="icon" type="image/png" href="{% static "images/fevicon.png" %}">
-	<!--<script src="{% static "scripts/scroll.js" %}"></script>
-	<link rel="stylesheet" type="text/css" href="{% static "styles/scroll.css" %}">   -->
+
 
 	
 </head>
@@ -61,8 +82,8 @@
 		 <div class="col-3 navdrop">
 		 <button type="button" class="vp-cog " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													 <span class="fa fa-cog vp-cog"></span>
-													</button>            
-						<a href="{% url "logout" %}" class="vp-logout pull-right">Logout</a>
+		 </button>            
+						<a href="#" class="vp-logout pull-right">Logout</a>
 		 </div>
 
 </div>
@@ -97,7 +118,12 @@
 					<img src="{% static "images/ck.jpg" %}" class="vp-user-dp">
 				</div>
 				<div class="col-7 user_name">
-					{{ user.first_name|default:"Clark" }} {{ user.last_name|default:"Kent" }}
+					{{ user.first_name|title|default:"Clark" }} {{ user.last_name|title|default:"Kent" }}
+				</div>
+				<div class="col-7 username">
+					<a href="#">
+							@<span>{{ user.username|lower|default:"mos76" }}</span>
+					</a>
 				</div>
 			</div>
 			
@@ -364,6 +390,14 @@
 </div>  <!--back-->
 
 </div> <!--sidebar_container-->
+
+
+<script type="text/javascript">
+	$('.vp-logout').on('click', function(){
+		localStorage.removeItem("token");
+		$(location).attr('href', 'http://127.0.0.1:8000/user/');
+	});
+</script>
 
 
 {% block content %}{% endblock %}

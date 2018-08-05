@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
 def signup_form(request):
 	if request.method == 'POST':
 		f = MyUserForm(request.POST)
@@ -26,15 +27,15 @@ def signup_form(request):
 			elif phone is not None:
 				user = authenticate(username=phone, password=raw_password)
 			login(request, user)
-			return redirect("about")
+			return redirect("about") # status 201 created
 		else:
 
-			return redirect("login")
+			return redirect("login") # status 400 bad request
 	
 
 	else:
 		
-		return redirect("login")
+		return redirect("login") #status 400 bad request
 
 
 
@@ -42,9 +43,9 @@ def login_user(request):
 
 
 	if request.method == 'POST':
-		email = request.POST['email']
+		username = request.POST['username']
 		password = request.POST['password']
-		user = authenticate(username=email, password=password)
+		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
 			next_url = request.GET.get('next')
@@ -69,7 +70,7 @@ def login2(request):
 
 
 	if request.method == 'POST':
-		email = request.POST['email']
+		email = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(username=email, password=password)
 		if user is not None:
@@ -91,10 +92,6 @@ def login2(request):
 
 
 
-
-def logout_user(request):
-	logout(request)
-	return redirect("signup")
 
 
 
