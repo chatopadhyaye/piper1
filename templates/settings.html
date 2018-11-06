@@ -17,9 +17,9 @@
 	<div class="tbox1">
 		<div class="thead">
 			<ul>
-				<li class="tab active"><a href="#general">General</a></li>
-				<li class="tab"><a href="#blocking">Blocking</a></li>
-				<li class="tab"><a href="#advance">Advance</a></li>
+				<li class="tab active"><a href="#" class="#general">General</a></li>
+				<li class="tab"><a href="#" class="#blocking">Blocking</a></li>
+				<li class="tab"><a href="#" class="#advance">Advance</a></li>
 			</ul>
 		</div><!--thead-->
 
@@ -30,6 +30,7 @@
 			<h3>General Account Settings</h3>
 			<div class="col-2 min1"><!--Left side column--></div>
 			<div class="col-8">
+			<form name="su_form">
 				<div class="col-6 mt10 firstn"><!--First Name-->
 					<label for="fname">First Name</label>
 					<input type="text" name="fname" class="sfname">
@@ -40,6 +41,14 @@
 				</div>
 				<div class="col-12 mt10 plr15"><!--Note-->
 					<span><strong>Note:</strong>You won't be able to change your name within the next 60 days</span>
+				</div>
+				<div class="col-12 mt20 plr15 relpos"><!--username-->
+					<label for="semail">Username</label>
+					<div id="tick">
+						<span class="fa fa-times-circle-o" id="times"></span>
+						<span class="fa fa-check" id="check"></span>
+					</div>
+					<input type="text" name="username_field" id="username_input" class="sfname">
 				</div>
 				<div class="col-12 mt20 plr15"><!--Email-address-->
 					<label for="semail">Email address</label>
@@ -74,6 +83,7 @@
 					<a href="#">Deactivate my account</a>
 				</div>
 			</div>
+			</form>
 			<div class="col-2 min1">
 				<!--Right side column-->
 			</div>
@@ -125,11 +135,39 @@
 		$("li.tab").click(function(){
 			$("li.active").removeClass('active');
 			$(this).addClass('active');
-			var tab = $(this).children('a').attr('href');
+			var tab = $(this).children('a').attr('class');
 			$(".tbdy").hide();
 			$(tab).show();
 		});
 	});
+
+
+	$("#username_input").blur(function(){
+      var username  = document.forms["su_form"]["username_field"].value;
+      if (username != "") {
+        $.ajax({
+          url: "/check_username/",
+          type: "post",
+          data: {
+            "username": username
+          },
+          statusCode: {
+            200: function() {
+              $("#times").hide();
+              $("#check").show();
+            },
+            400: function() {
+              $("#check").hide();
+              $("#times").show();
+            }
+          }
+        });
+      }
+      else{
+        $("#times").hide();
+        $("#check").hide();
+        }
+    });
 
 
 

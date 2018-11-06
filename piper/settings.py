@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'core',
     'rest_framework',
     'rest_framework.authtoken',
+    'stream_framework',
+    'celery',
 ]
 
 MIDDLEWARE = [

@@ -2056,7 +2056,7 @@ input:checked + .slider:before {
 .tbdy {
 	width: 100%;
 	height: auto;
-	min-height: 400px;
+	min-height: 600px;
 	margin-bottom: 25px;
 	background-color: white;
 	border: 1px solid #ddd;
@@ -2126,6 +2126,10 @@ label {
 	margin-top: 20px;
 }
 
+.relpos {
+	position: relative;
+}
+
 .npass {
 	margin: 20px 135px 0px;
 }
@@ -2158,7 +2162,7 @@ label {
 }
 
 .amarg {
-	margin: 17px 135px;
+	margin: 17px 150px 31px 201px;
 }
 
 .min1 {
@@ -2185,4 +2189,29 @@ label {
 
 .username:hover {
 	text-decoration: underline;
+}
+
+#tick {
+	height: 34px;
+    width: 100px;
+    position: absolute;
+    right: 15px;
+    top: 19px;
+    border-radius: 5px;
+    font-size: 21px;
+}
+
+
+#times {
+	float: right;
+    padding: 7px 12px 0px 0px;
+    color: #f15b5bb5;
+    display: none;
+}
+
+#check {
+	float: right;
+    padding: 7px 12px 0px 0px;
+    color: #78fda1;
+    
 }

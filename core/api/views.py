@@ -58,7 +58,7 @@ class check_token(APIView):
 		
 
 
-# not in use
+
 class check_username(APIView):
 
 	permission_classes = (permissions.AllowAny,)
@@ -72,7 +72,7 @@ class check_username(APIView):
 		return Response(status=status.HTTP_200_OK)
 		
 
-#not in use
+
 class check_username_list(APIView):
 
 	permission_classes = (permissions.AllowAny,)
